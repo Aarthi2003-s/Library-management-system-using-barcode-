@@ -1,0 +1,130 @@
+<!-- templates/books/book_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <style>
+        /* General styles for the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling the title */
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2em;
+            color: #4CAF50;
+        }
+
+        /* Styling the table */
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table headers style */
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        /* Table cell style */
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Styling the barcode images */
+        img {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Hover effect for rows */
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Link styling */
+        a {
+            display: inline-block;
+            margin: 10px 15px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        /* For responsive design on small screens */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            a {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Book List</h2>
+    <table border="1">
+        <tr>
+            <th>Access No</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Date</th>
+            <th>Edition</th>
+            <th>Actions</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.access_no }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.publication_date }}</td>    
+            <td>{{ book.edition_no}}</td>
+           
+            <td>
+                <a href="{% url 'edit_book' book.access_no %}">Edit</a> |
+                <a href="{% url 'delete_book' book.access_no %}" onclick="return confirm('Are you sure you want to delete this book?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <center>
+    <a href="{% url 'add_book' %}">Add New Book</a>
+    <a href="{% url 'home' %}">Back to Home</a>
+</center>
+</body>
+</html>

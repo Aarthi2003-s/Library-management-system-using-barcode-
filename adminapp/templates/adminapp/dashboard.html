@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <script>
+        function showUserManagement() {
+            document.getElementById("operations").innerHTML = `
+                <h2>User Management</h2>
+                <button onclick="location.href='/users/register/'">➕ User Registration</button>
+                <button onclick="location.href='/users/list/'">📋 User List</button>
+            `;
+        }
+
+        function showBookManagement() {
+            document.getElementById("operations").innerHTML = `
+                <h2>Book Management</h2>
+                <button onclick="location.href='/books/add/'">➕ Add Book</button>
+                <button onclick="location.href='/books/list/'">📚 Book List</button>
+            `;
+        }
+
+        function showReports() {
+            document.getElementById("operations").innerHTML = `
+                <h2>Reports</h2>
+                <button onclick="location.href='/reports/total-users/'">👥 Total Users</button>
+                <button onclick="location.href='/reports/total-books/'">📚 Total Books</button>
+                <button onclick="location.href='/reports/borrowed-books/'">📕 Borrowed Books</button>
+                <button onclick="location.href='/reports/returned-books/'">📗 Returned Books</button>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <div class="buttons">
+        <button onclick="showUserManagement()">👥 User Management</button>
+        <button onclick="showBookManagement()">📖 Book Management</button>
+        <button onclick="showReports()">📊 Reports</button>
+        <a href="{% url 'admin_logout' %}" style="margin-left:20px;">🚪 Logout</a>
+    </div>
+
+    <div id="operations" style="margin-top: 30px;"></div>
+</body>
+</html>
